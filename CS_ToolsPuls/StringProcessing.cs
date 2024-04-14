@@ -1,72 +1,115 @@
-﻿public class StringProcessing
+﻿using System.Text;
+public class StringProcessing
 {
+
     /// <summary>
-    /// Extracts all digits from a string and stores them as a string.
+    /// Counts the occurrences of a specified character in the given text.
     /// </summary>
-    /// <param name="text">The string to extract numbers from.</param>
-    /// <param name="numbersAsStr">The output string containing only the digits from the input text.</param>
-    public static void GetNumbers(string text, out string NumbersAsStr)
+    /// <param name="text">The text in which to search for the character.</param>
+    /// <param name="letter">The character to count occurrences of.</param>
+    /// <returns>The number of occurrences of the specified character in the text.</returns>
+    public static int Count(string text, char letter)
     {
-        string Str = "";
+        int count = 0;
         foreach (char c in text)
         {
-            if (char.IsDigit(c)) Str += c;
+            if (c == letter) count++;
         }
-        NumbersAsStr = Str;
+        return count;
     }
 
     /// <summary>
-    /// Extracts all digits from a string, converts them to a single integer, and stores the sum.
+    /// Converts the input text into title case format.
     /// </summary>
-    /// <param name="text">The string to extract numbers from.</param>
-    /// <param name="numbersAsInt">The output integer containing the sum of all digits extracted from the input text.</param>
-    public static void GetNumbers(string text, out int NumbersAsInt)
+    /// <param name="text">The text to be converted.</param>
+    /// <returns>The input text in title case format.</returns>
+    public static string ToTitleCase(string text)
     {
-        text += "?";
-        int Number = 0;
-        string valNumber = "";
-        for (int i = 0; i < text.Length; i++)
+        StringBuilder Str = new StringBuilder(text.Length);
+        bool firstLetter = true;
+        foreach (char c in text)
         {
-            if (char.IsDigit(text[i])) valNumber += text[i];
-            else if (valNumber != "")
+            if (char.IsLetter(c))
             {
-                Number += int.Parse(valNumber);
-                valNumber = "";
+                if (!firstLetter) Str.Append(c.ToString().ToLower());
+                else
+                {
+                    Str.Append(c.ToString().ToUpper());
+                    firstLetter = false;
+                }
+            }
+            else
+            {
+                Str.Append(c);
+                firstLetter = true;
             }
         }
-        NumbersAsInt = Number;
+        return Str.ToString();
     }
 
     /// <summary>
-    /// Extracts all digits from a string, converts them to a single double, and stores the sum.
-    /// Considers decimal points and treats numbers after a point as decimals.
+    /// Extracts numeric digits from the given text and returns them as a string.
     /// </summary>
-    /// <param name="text">The string to extract numbers from.</param>
-    /// <param name="numbersAsDouble">The output double containing the sum of all digits and decimals extracted from the input text.</param>
-    public static void GetNumbers(string text, out double NumbersAsDouble)
+    /// <param name="text">The text from which to extract numeric digits.</param>
+    /// <returns>A string containing only the numeric digits found in the text.</returns>
+    public static string GetDigits(string text)
+    {
+        StringBuilder Str = new StringBuilder();
+        foreach (char c in text) if (char.IsDigit(c)) Str.Append(c);
+        return Str.ToString();
+    }
+
+    /// <summary>
+    /// Parses the numeric digits from the given text and returns their summation as an unsigned integer.
+    /// </summary>
+    /// <param name="text">The text containing numeric digits.</param>
+    /// <returns>The summation of numeric digits found in the text as an unsigned integer.</returns>
+    public static uint GetDigitsAsUint(string text)
+    {
+        text += "?";
+        uint Number = 0;
+        StringBuilder valNumber = new StringBuilder();
+        for (int i = 0; i < text.Length; i++)
+        {
+            if (char.IsDigit(text[i])) valNumber.Append(text[i]);
+            else if (!valNumber.Equals(""))
+            {
+                Number += uint.Parse(valNumber.ToString());
+                valNumber.Clear();
+            }
+        }
+        return Number;
+    }
+
+    /// <summary>
+    /// Parses numeric values from the given text and returns their summation as a double.
+    /// </summary>
+    /// <param name="text">The text containing numeric values.</param>
+    /// <returns>The summation of numeric values found in the text as a double.</returns>
+    public static double GetDigitsAsDouble(string text)
     {
         text += "?";
         double Number = 0;
-        string valNumber = "";
+        StringBuilder valNumber = new StringBuilder();
         bool dot = false;
         for (int i = 0; i < text.Length; i++)
         {
-            if (char.IsDigit(text[i])) valNumber += text[i];
+            if (char.IsDigit(text[i])) valNumber.Append(text[i]);
             else if (text[i] == '.' && !dot)
             {
-                if (valNumber != "")
+                if (!valNumber.Equals(""))
                 {
-                    Number += double.Parse(valNumber);
-                    valNumber = "";
+                    Number += double.Parse(valNumber.ToString());
+                    valNumber.Clear();
                 }
                 dot = true;
             }
-            else if (valNumber != "")
+            else if (!valNumber.Equals(""))
             {
-                Number += double.Parse(dot ? "0." + valNumber : valNumber);
-                valNumber = "";
+                Number += double.Parse(dot ? "0." + valNumber.ToString() : valNumber.ToString());
+                valNumber.Clear();
             }
         }
-        NumbersAsDouble = Number;
+        return Number;
     }
 }
