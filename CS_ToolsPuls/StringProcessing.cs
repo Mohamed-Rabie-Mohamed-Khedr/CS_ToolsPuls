@@ -16,7 +16,7 @@ public class StringProcessing
             if (s != -1)
             {
                 count++;
-                start = s + value.Length - 1;
+                start = s + value.Length;
             }
             else break;
         }
