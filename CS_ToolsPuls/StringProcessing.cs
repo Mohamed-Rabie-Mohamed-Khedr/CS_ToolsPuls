@@ -1,6 +1,27 @@
 ﻿using System.Text;
 public class StringProcessing
 {
+    /// <summary>
+    /// Counts the occurrences of a specified string within another string.
+    /// </summary>
+    /// <param name="text">The text to search within.</param>
+    /// <param name="value">The string to search for.</param>
+    /// <returns>The number of occurrences of the specified string within the text.</returns>
+    public static int Count(string text, string value)
+    {
+        int count = 0, start = 0, s = 0;
+        while (true)
+        {
+            s = text.IndexOf(value, start);
+            if (s != -1)
+            {
+                count++;
+                start = s + value.Length - 1;
+            }
+            else break;
+        }
+        return count;
+    }
 
     /// <summary>
     /// Counts the occurrences of a specified character in the given text.
@@ -11,10 +32,7 @@ public class StringProcessing
     public static int Count(string text, char letter)
     {
         int count = 0;
-        foreach (char c in text)
-        {
-            if (c == letter) count++;
-        }
+        foreach (char c in text){ if (c == letter) count++; }
         return count;
     }
 
