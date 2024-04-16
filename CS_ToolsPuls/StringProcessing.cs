@@ -1,5 +1,5 @@
 ﻿using System.Text;
-public class StringProcessing
+public static class StringProcessing
 {
     /// <summary>
     /// Counts the occurrences of a specified string within another string.
@@ -64,70 +64,55 @@ public class StringProcessing
         }
         return Str.ToString();
     }
-
-    /// <summary>
-    /// Extracts numeric digits from the given text and returns them as a string.
-    /// </summary>
-    /// <param name="text">The text from which to extract numeric digits.</param>
-    /// <returns>A string containing only the numeric digits found in the text.</returns>
-    public static string GetDigits(string text)
+    
+    public static void GetDigits(this string t, out string digits)
     {
         StringBuilder Str = new StringBuilder();
-        foreach (char c in text) if (char.IsDigit(c)) Str.Append(c);
-        return Str.ToString();
+        foreach (char c in t) if (char.IsDigit(c)) Str.Append(c);
+        digits = Str.ToString();
     }
-
-    /// <summary>
-    /// Parses the numeric digits from the given text and returns their summation as an unsigned integer.
-    /// </summary>
-    /// <param name="text">The text containing numeric digits.</param>
-    /// <returns>The summation of numeric digits found in the text as an unsigned integer.</returns>
-    public static uint GetDigitsAsUint(string text)
+    
+    public static void GetDigits(this string t, out uint digits)
     {
-        text += "?";
+        t += "?";
         uint Number = 0;
         StringBuilder valNumber = new StringBuilder();
-        for (int i = 0; i < text.Length; i++)
+        for (int i = 0; i < t.Length; i++)
         {
-            if (char.IsDigit(text[i])) valNumber.Append(text[i]);
+            if (char.IsDigit(t[i])) valNumber.Append(t[i]);
             else if (!valNumber.Equals(""))
             {
-                Number += uint.Parse(valNumber.ToString());
+                Number = checked(Number + uint.Parse(valNumber.ToString()));
                 valNumber.Clear();
             }
         }
-        return Number;
+        digits = Number;
     }
-
-    /// <summary>
-    /// Parses numeric values from the given text and returns their summation as a double.
-    /// </summary>
-    /// <param name="text">The text containing numeric values.</param>
-    /// <returns>The summation of numeric values found in the text as a double.</returns>
-    public static double GetDigitsAsDouble(string text)
+    
+    public static void GetDigits(this string t, out double digits)
     {
-        text += "?";
+        t += "?";
         double Number = 0;
         StringBuilder valNumber = new StringBuilder();
         bool dot = false;
-        for (int i = 0; i < text.Length; i++)
+        for (int i = 0; i < t.Length; i++)
         {
-            if (char.IsDigit(text[i])) valNumber.Append(text[i]);
-            else if (text[i] == '.' && !dot)
+            if (char.IsDigit(t[i])) valNumber.Append(t[i]);
+            else if (t[i] == '.' && !dot)
             {
                 if (!valNumber.Equals(""))
                 {
-                    Number += double.Parse(valNumber.ToString());
+                    Number = checked(Number + double.Parse(valNumber.ToString()));
                     valNumber.Clear();
                 }
                 dot = true;
             }
             else if (!valNumber.Equals(""))
             {
-                Number += double.Parse(dot ? "0." + valNumber.ToString() : valNumber.ToString());
+                Number = checked(Number + double.Parse(dot ? "0." + valNumber.ToString() : valNumber.ToString()));
                 valNumber.Clear();
             }
         }
-        return Number;
+        digits = Number;
     }
 }
