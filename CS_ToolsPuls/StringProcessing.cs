@@ -1,18 +1,21 @@
 ﻿using System.Text;
+/// <summary>
+/// A static class for string processing containing extension methods to perform various string operations.
+/// </summary>
 public static class StringProcessing
 {
     /// <summary>
-    /// Counts the occurrences of a specified string within another string.
+    /// Counts the occurrences of a specified string within the current string.
     /// </summary>
-    /// <param name="text">The text to search within.</param>
-    /// <param name="value">The string to search for.</param>
-    /// <returns>The number of occurrences of the specified string within the text.</returns>
-    public static int Count(string text, string value)
+    /// <param name="t">The current string.</param>
+    /// <param name="value">The string to count.</param>
+    /// <returns>The number of occurrences of the specified string.</returns>
+    public static int ValueCount(this string t, string value)
     {
         int count = 0, start = 0, s = 0;
         while (true)
         {
-            s = text.IndexOf(value, start);
+            s = t.IndexOf(value, start);
             if (s != -1)
             {
                 count++;
@@ -24,28 +27,28 @@ public static class StringProcessing
     }
 
     /// <summary>
-    /// Counts the occurrences of a specified character in the given text.
+    /// Counts the occurrences of a specified character within the current string.
     /// </summary>
-    /// <param name="text">The text in which to search for the character.</param>
-    /// <param name="letter">The character to count occurrences of.</param>
-    /// <returns>The number of occurrences of the specified character in the text.</returns>
-    public static int Count(string text, char letter)
+    /// <param name="t">The current string.</param>
+    /// <param name="value">The character to count.</param>
+    /// <returns>The number of occurrences of the specified character.</returns>
+    public static int ValueCount(this string t, char value)
     {
         int count = 0;
-        foreach (char c in text){ if (c == letter) count++; }
+        foreach (char c in t){ if (c == value) count++; }
         return count;
     }
 
     /// <summary>
-    /// Converts the input text into title case format.
+    /// Converts the current string to title case.
     /// </summary>
-    /// <param name="text">The text to be converted.</param>
-    /// <returns>The input text in title case format.</returns>
-    public static string ToTitleCase(string text)
+    /// <param name="t">The current string.</param>
+    /// <returns>The string converted to title case.</returns>
+    public static string ToTitleCase(this string t)
     {
-        StringBuilder Str = new StringBuilder(text.Length);
+        StringBuilder Str = new StringBuilder(t.Length);
         bool firstLetter = true;
-        foreach (char c in text)
+        foreach (char c in t)
         {
             if (char.IsLetter(c))
             {
@@ -64,15 +67,25 @@ public static class StringProcessing
         }
         return Str.ToString();
     }
-    
-    public static void GetDigits(this string t, out string digits)
+
+    /// <summary>
+    /// Retrieves all digits from the current string.
+    /// </summary>
+    /// <param name="t">The current string.</param>
+    /// <param name="digitAsString">Output parameter containing digits as a string.</param>
+    public static void GetDigit(this string t, out string digitAsString)
     {
         StringBuilder Str = new StringBuilder();
         foreach (char c in t) if (char.IsDigit(c)) Str.Append(c);
-        digits = Str.ToString();
+        digitAsString = Str.ToString();
     }
-    
-    public static void GetDigits(this string t, out uint digits)
+
+    /// <summary>
+    /// Retrieves a non-negative integer from the current string.
+    /// </summary>
+    /// <param name="t">The current string.</param>
+    /// <param name="digitAsUint">Output parameter containing the non-negative integer.</param>
+    public static void GetDigit(this string t, out uint digitAsUint)
     {
         t += "?";
         uint Number = 0;
@@ -86,10 +99,15 @@ public static class StringProcessing
                 valNumber.Clear();
             }
         }
-        digits = Number;
+        digitAsUint = Number;
     }
-    
-    public static void GetDigits(this string t, out double digits)
+
+    /// <summary>
+    /// Retrieves a floating-point number from the current string.
+    /// </summary>
+    /// <param name="t">The current string.</param>
+    /// <param name="digitAsDouble">Output parameter containing the floating-point number.</param>
+    public static void GetDigit(this string t, out double digitAsDouble)
     {
         t += "?";
         double Number = 0;
@@ -113,6 +131,6 @@ public static class StringProcessing
                 valNumber.Clear();
             }
         }
-        digits = Number;
+        digitAsDouble = Number;
     }
 }

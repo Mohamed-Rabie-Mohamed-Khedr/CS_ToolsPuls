@@ -3,31 +3,23 @@
     class Program
     {
         static void Main(string[] args)
-        {
-            string str = "v 1 2h3 k .5v hihi";
+        { 
+            string str = "hi hi, digit is 1 2, 3 and .5";
             
-            string digitAsString;// = 1235
-            uint digitAsUint;// = 11
-            double digitAsDouble;// = 6.5
+            string digitAsString;
+            uint digitAsUint;
+            double digitAsDouble;
+            
+            str.GetDigit(out digitAsString);
+            str.GetDigit(out digitAsUint);
+            str.GetDigit(out digitAsDouble);
 
-            str.GetDigits(out digitAsString);
-            str.GetDigits(out digitAsUint);
-            str.GetDigits(out digitAsDouble);
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            /*while (true)
-            {
-                Console.WriteLine(StringProcessing.ToTitleCase(Console.ReadLine()));
-                Console.WriteLine(StringProcessing.Count(Console.ReadLine(), 'g'));
-                Console.WriteLine(StringProcessing.Count(Console.ReadLine(), "NUM"));
-            }*/
+            Console.WriteLine(digitAsString);// => 1235
+            Console.WriteLine(digitAsUint);// => 11
+            Console.WriteLine(digitAsDouble);// => 6.5
+            Console.WriteLine(str.ValueCount('i'));// => 5
+            Console.WriteLine(str.ValueCount("hi"));// => 2
+            Console.WriteLine(str.ToTitleCase());// => Hi Hi, Digit Is 1 2, 3 And .5
         }
     }
 }
