@@ -1,32 +1,5 @@
-1. **ValueCount (string version):**
-   - Counts the occurrences of a specified string within the current string.
-   - Parameters: 
-     - `value`: The string to count.
-   - Returns: The number of occurrences of the specified string.
+Code containing a set of useful functions for manipulating strings in the C# programming language. It is well designed and organized, and provides a clear interface to use. These functions can be used for various purposes such as validating strings, formatting them, and specifically extracting numbers from them.
 
-2. **ValueCount (char version):**
-   - Counts the occurrences of a specified character within the current string.
-   - Parameters:
-     - `value`: The character to count.
-   - Returns: The number of occurrences of the specified character.
+It's nice to see documentation above each function explaining what it does and how to use it, this makes it easier to understand how the code works and make use of it properly.
 
-3. **ToTitleCase:**
-   - Converts the current string to title case.
-   - Returns: The string converted to title case.
-
-4. **GetDigit (string version):**
-   - Retrieves all digits from the current string.
-   - Parameters:
-     - `digitAsString` (out parameter): Output parameter containing digits as a string.
-
-5. **GetDigit (uint version):**
-   - Retrieves a non-negative integer from the current string.
-   - Parameters:
-     - `digitAsUint` (out parameter): Output parameter containing the non-negative integer.
-
-6. **GetDigit (double version):**
-   - Retrieves a floating-point number from the current string.
-   - Parameters:
-     - `digitAsDouble` (out parameter): Output parameter containing the floating-point number.
-
-These methods provide functionality for string manipulation, including counting occurrences of characters or strings, converting strings to title case, and extracting digits or numerical values from strings.
+In general, the code is efficient and useful for people who need to manipulate strings in their applications using C#.
