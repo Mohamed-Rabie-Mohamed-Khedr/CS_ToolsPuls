@@ -5,6 +5,26 @@
 public static class StringProcessing
 {
     /// <summary>
+    /// Swaps the case of each alphabetic character in the string.
+    /// </summary>
+    /// <param name="t">The input string.</param>
+    /// <returns>A new string with the case of each alphabetic character swapped.</returns>
+    public static string SwapCase(this string t)
+    {
+        StringBuilder Str = new StringBuilder(t.Length);
+        foreach (char c in t)
+        {
+            if (char.IsLetter(c))
+            {
+                if (char.IsUpper(c)) Str.Append(c.ToString().ToLower());
+                else Str.Append(c.ToString().ToUpper());
+            }
+            else Str.Append(c);
+        }
+        return Str.ToString();
+    }
+
+    /// <summary>
     /// Checks whether a string consists only of alphanumeric characters,
     /// with an option to ignore specified characters.
     /// </summary>
@@ -48,14 +68,14 @@ public static class StringProcessing
     /// </summary>
     /// <param name="t">The string to center.</param>
     /// <param name="value">The padding character.</param>
-    /// <param name="count">The number of padding characters on each side.</param>
+    /// <param name="number">The number of padding characters on each side.</param>
     /// <returns>The centered string.</returns>
-    public static string Center(this string t, char value, int count)
+    public static string Center(this string t, char value, int number)
     {
-        if (count < 1) return t;
-        count *= 2;
-        StringBuilder Str = new StringBuilder(t.Length + count);
-        for (int i = 0; i < count; i++) Str.Append(value);
+        if (number < 1) return t;
+        number *= 2;
+        StringBuilder Str = new StringBuilder(t.Length + number);
+        for (int i = 0; i < number; i++) Str.Append(value);
         Str.Insert(Str.Length / 2, t);
         return Str.ToString();
     }
@@ -111,6 +131,26 @@ public static class StringProcessing
         int count = 0;
         foreach (char c in t){ if (c == value) count++; }
         return count;
+    }
+
+    /// <summary>
+    /// Checks if the input string follows the title case format.
+    /// </summary>
+    /// <param name="t">The string to be checked.</param>
+    /// <returns>True if the string is in title case; otherwise, false.</returns>
+    public static bool IsTitle(this string t)
+    {
+        bool firstLetter = true;
+        foreach (char c in t)
+        {
+            if (!char.IsLetter(c)) firstLetter = true;
+            else
+            {
+                if (firstLetter && char.IsUpper(c)) firstLetter = false;
+                else if (firstLetter ^ char.IsUpper(c)) return false;
+            }
+        }
+        return true;
     }
 
     /// <summary>

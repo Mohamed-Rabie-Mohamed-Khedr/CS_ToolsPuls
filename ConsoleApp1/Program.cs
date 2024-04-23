@@ -4,8 +4,8 @@
     {
         static void Main(string[] args)
         {
-            string str = "";
-            Console.WriteLine(str.IsAalphanumeric());
+            Console.WriteLine("I am a developer.".IsTitle());// => false
+            Console.WriteLine("I Am A Developer.".IsTitle());// => true
         }
     }
 }
