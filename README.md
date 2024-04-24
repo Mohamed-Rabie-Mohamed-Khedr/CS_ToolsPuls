@@ -1,5 +1,3 @@
-This is a library that provides a set of useful functions for C# developers.
-
 This class, named `StringProcessing`, is a collection of static methods for processing strings in various ways. Here's a description of each method:
 
 1. **SwapCase**: This method swaps the case of each alphabetic character in a string, converting uppercase characters to lowercase and vice versa.
@@ -12,7 +10,7 @@ This class, named `StringProcessing`, is a collection of static methods for proc
 
 5. **ValueCount (char)**: This method counts the occurrences of a specified character within the current string.
 
-6. **IsTitle**: This method checks if the input string follows the title case format.
+6. **IsTitle**: This method checks if the string follows the title case format.
 
 7. **ToTitleCase**: This method converts the current string to title case.
 
