@@ -201,13 +201,16 @@ public static class StringProcessing
     /// <param name="digitAsUint">Output parameter containing the non-negative integer.</param>
     public static void GetDigit(this string t, out uint digitAsUint)
     {
-        t += "?";
         uint Number = 0;
         StringBuilder valNumber = new StringBuilder();
         for (int i = 0; i < t.Length; i++)
         {
-            if (char.IsDigit(t[i])) valNumber.Append(t[i]);
-            else if (!valNumber.Equals(""))
+            if (char.IsDigit(t[i]))
+            {
+                valNumber.Append(t[i]);
+                if (i < t.Length-1) continue;
+            }
+            if (!valNumber.Equals(""))
             {
                 Number = checked(Number + uint.Parse(valNumber.ToString()));
                 valNumber.Clear();
@@ -217,20 +220,23 @@ public static class StringProcessing
     }
 
     /// <summary>
-    /// Retrieves a floating-point number from the current string.
+    /// Extracts digits from the input string and returns them as a double.
     /// </summary>
-    /// <param name="t">The current string.</param>
-    /// <param name="digitAsDouble">Output parameter containing the floating-point number.</param>
+    /// <param name="t">The string to be processed.</param>
+    /// <param name="digitAsDouble">The extracted number as a double.</param>
     public static void GetDigit(this string t, out double digitAsDouble)
     {
-        t += "?";
         double Number = 0;
         StringBuilder valNumber = new StringBuilder();
         bool dot = false;
         for (int i = 0; i < t.Length; i++)
         {
-            if (char.IsDigit(t[i])) valNumber.Append(t[i]);
-            else if (t[i] == '.' && !dot)
+            if (char.IsDigit(t[i]))
+            {
+                valNumber.Append(t[i]);
+                if (i < t.Length-1) continue;
+            }
+            if (t[i] == '.' && !dot)
             {
                 if (!valNumber.Equals(""))
                 {

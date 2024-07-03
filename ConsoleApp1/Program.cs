@@ -4,8 +4,11 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("I am a developer.".IsTitle());// => false
-            Console.WriteLine("I Am A Developer.".IsTitle());// => true
+            while (true)
+            {
+                Console.ReadLine().GetDigit(out double i);
+                Console.WriteLine(i);
+            }
         }
     }
 }
