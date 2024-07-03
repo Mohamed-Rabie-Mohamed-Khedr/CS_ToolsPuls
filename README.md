@@ -1,5 +1,23 @@
-Code containing a set of useful functions for manipulating strings in the C# programming language. It is well designed and organized, and provides a clear interface to use. These functions can be used for various purposes such as validating strings, formatting them, and specifically extracting numbers from them.
+This class, named `StringProcessing`, is a collection of static methods for processing strings in various ways. Here's a description of each method:
 
-It's nice to see documentation above each function explaining what it does and how to use it, this makes it easier to understand how the code works and make use of it properly.
+1. **SwapCase**: This method swaps the case of each alphabetic character in a string, converting uppercase characters to lowercase and vice versa.
 
-In general, the code is efficient and useful for people who need to manipulate strings in their applications using C#.
+2. **IsAlphanumeric**: This method checks whether a string consists only of alphanumeric characters, with an option to ignore specified characters.
+
+3. **Center**: This method centers a string within a specified number of padding characters, either a single character or a string, on each side.
+
+4. **ValueCount (string)**: This method counts the occurrences of a specified string within the current string, using a specified string comparison option.
+
+5. **ValueCount (char)**: This method counts the occurrences of a specified character within the current string.
+
+6. **IsTitle**: This method checks if the string follows the title case format.
+
+7. **ToTitleCase**: This method converts the current string to title case.
+
+8. **GetDigit (out string)**: This method retrieves all digits from the current string and outputs them as a string.
+
+9. **GetDigit (out uint)**: This method retrieves a non-negative integer from the current string and outputs it as an unsigned integer.
+
+10. **GetDigit (out double)**: This method retrieves a floating-point number from the current string and outputs it as a double.
+
+Each method is thoroughly documented with XML comments, providing information about its purpose, parameters, and return values. Additionally, the methods are designed to handle various scenarios, such as ignoring specific characters, handling different types of padding, and parsing digits or numbers from strings.
